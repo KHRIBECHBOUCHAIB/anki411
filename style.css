@@ -1,0 +1,172 @@
+/* style.css */
+
+@keyframes rotateIn {
+  0% {
+    transform: rotate(90deg); /* Start from 90 degrees */
+  }
+  100% {
+    transform: rotate(0); /* End at 0 degrees */
+  }
+}
+.card-question, .card-reponse {
+  padding: 30px; /* Rembourrage généreux pour un look spacieux */
+  margin: 29px 0; /* Ajouter de l'espace entre les cartes */
+  border-radius: 2; /* Coins carrés pour un look carré */
+  box-shadow: 0 4px 12px 2px rgba(600, 219, 5000, 0.4); /* Ombre plus prononcée pour la profondeur */
+  display: flex; /* Utiliser flexbox pour centrer le contenu */
+  justify-content: center; /* Centrer le contenu horizontalement */
+  align-items: center; /* Centrer le contenu verticalement */
+  text-align: center; /* Assurer que le texte est centré */
+  font-size: 10px; /* Taille de police lisible */
+  animation: rotateIn 0.5s ease; /* Apply the animation */
+}
+
+.card-question {
+  background-color: #1c75be;
+  border: 6px solid #2e7ce3;
+  color: #5b5d37;
+  
+}
+
+.card-reponse {
+  background-color: #24703d;
+  border: 6px solid #39eb60;
+  color: #13064b;
+}
+
+
+
+
+.stButton {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 6%; /* Adjust the height to fill the viewport */
+}
+
+.stButton > button {
+  width: 200px; /* Set a fixed width for all buttons */
+  height: 60px; /* Set a fixed height for all buttons */
+  padding: 20px; /* Adjust padding for better button appearance */
+  margin: 18px; /* Add margin to separate buttons */
+  border-radius: 25px; /* Apply border-radius for rounded corners */
+  border: none; /* Remove border for cleaner look */
+  font-size: 16px; /* Adjust font size for better readability */
+  font-weight: bold; /* Apply bold font weight for better visibility */
+  background-color: #3170ef; /* Set background color for buttons */
+  color: #ffffff; /* Set text color for buttons */
+  transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+  box-shadow: 0 4px 12px 2px rgba(500, 219, 2500, 0.4); /* Ombre plus prononcée pour la profondeur */
+  animation: rotateIn 0.5s ease; /* Apply the animation */
+}
+
+
+
+.stButton > button:hover {
+  background-color: #021c54; /* Darker background color on hover */
+  color: #ffffff; /* Lighter text color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Positioning the buttons */
+.first-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.second-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.third-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourth-line {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Additional styling for the rest of the app */
+body {
+  background-color: #0d37ce;
+  font-family: 'Comic Neue', 'Arial', sans-serif;
+}
+
+ h3, h4, h5, h6 {
+  color: #f0f0f4f9;
+  font-family: 'Arial', sans-serif; /* Change font family for h1 */
+  font-size: 24px; /* Change font size for h1 and h2 */
+  
+}
+h1, h2 {
+  color: hwb(0 98% 1%);
+  font-family: 'Arial', sans-serif; /* Change font family for h1 */
+  font-size: 24px; /* Change font size for h1 and h2 */
+}
+.question-prefix {
+  font-weight: bold;
+  color: #080808; /* Dark blue color */
+  font-size: 16px; /* Adjust font size */
+  font-style: italic; /* Add italic style */
+}
+
+.answer-prefix {
+  font-weight: bold;
+  color: #080808; /* Dark orange color */
+  font-size: 16px; /* Adjust font size */
+  text-decoration: underline; /* Add underline */
+}
+
+
+/* Override Streamlit's default max-width for containers to allow cards to be wider */
+.css-1d391kg {
+  max-width: 90%;
+}
+
+/* Custom CSS for Streamlit Sidebar */
+[data-testid="stSidebar"] [data-testid="stBlock"] {
+  background-color: #0c0c97; /* Light grey background */
+  color: #e30c0c; /* Dark grey text */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Style the select boxes within the sidebar */
+[data-testid="stSidebar"] .stSelectbox .css-2b097c-container {
+  border: 2px solid #4CAF50; /* Green border for select boxes */
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+[data-testid="stSidebar"] .stSelectbox .css-yk16xz-control {
+  background-color: #e8f5e9; /* Light green background for select boxes */
+  color: #333; /* Dark text for better readability */
+  border: none; /* No border */
+}
+
+[data-testid="stSidebar"] .stSelectbox .css-1uccc91-singleValue {
+  color: #1b5e20; /* Dark green text color for selected option */
+}
+
+/* Style for the dropdown menu */
+[data-testid="stSidebar"] .stSelectbox .css-26l3qy-menu {
+  background-color: #ffffff; /* White background for dropdown */
+  border: 1px solid #4CAF50; /* Green border for dropdown */
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Drop shadow for dropdown */
+}
+
+/* Style for options in the dropdown */
+[data-testid="stSidebar"] .stSelectbox .css-4ljt47-MenuList {
+  background-color: #f4f4f8; /* Light grey background for options */
+}
+
+/* Hover effect for options */
+[data-testid="stSidebar"] .stSelectbox .css-4ljt47-MenuList div:hover {
+  background-color: #4CAF50; /* Green background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
