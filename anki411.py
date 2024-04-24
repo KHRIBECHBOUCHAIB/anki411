@@ -217,7 +217,15 @@ def main():
     load_logo()
     initialize_session()
 
-    st.title('Cartes Éducatives : Explore et Apprends')
+    st.markdown("""
+<style>
+.title {
+    color: #007bff;  /* This is a common blue color, but you can adjust the hex code to any shade of blue you prefer */
+}
+</style>
+<h1 class="title">Cartes Éducatives : Explore et Apprends</h1>
+""", unsafe_allow_html=True)
+
 
     # Sidebar for category, year, deck, and subdeck selection
     with st.sidebar:
