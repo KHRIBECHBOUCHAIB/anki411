@@ -278,13 +278,16 @@ def main():
             st.button("Next", on_click=bouton_next)
         st.button("Down", on_click=bouton_down)
 
-# Add a blue footer with centered text
+# Add a blue footer with left-aligned text
 footer = f"""
-<div style="position:fixed;bottom:0;width:100%;background-color:#007bff;color:white;padding:10px;text-align:center;">
-<span style="display: block; margin: auto;">Tous les droits réservés ClinicoG 2024</span>
+<div style="position:fixed;bottom:0;width:100%;background-color:#007bff;color:white;padding:10px;">
+<span style="display: block; margin: auto; text-align: left;">Tous les droits réservés ClinicoG 2024</span>
 </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
+
+
+
 
 
 
