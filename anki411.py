@@ -9,7 +9,10 @@ def load_css():
 def load_logo():
     logo = "images/logo.jpg"
     st.image(logo, width=100)
-
+# Load your logo image
+def load_logo1():
+    logo = "images/logo1.png"
+    st.image(logo, width=180)
 # Define initial list of categories, years, decks, and subdecks
 def get_categories_and_decks():
     return {
@@ -132,11 +135,14 @@ def bouton_cacher_reponse():
 
 # Move to the next question
 def bouton_next():
-    if st.session_state.index_actuel < len(st.session_state.questions_reponses) - 1:
-        question = st.session_state.questions_reponses.pop(st.session_state.index_actuel)
-        insert_at = (st.session_state.index_actuel + 1) % len(st.session_state.questions_reponses)
-        st.session_state.questions_reponses.insert(insert_at, question)
+    if len(st.session_state.questions_reponses) == 2:
+        # Move the current card to the end of the list
+        st.session_state.questions_reponses.append(st.session_state.questions_reponses.pop(st.session_state.index_actuel))
+        st.session_state.index_actuel = 0
+    else:
+        st.session_state.index_actuel = (st.session_state.index_actuel + 1) % len(st.session_state.questions_reponses)
     bouton_cacher_reponse()
+
 
 # Move to the previous question
 def bouton_previous():
@@ -152,7 +158,7 @@ def bouton_down():
         del st.session_state.questions_reponses[st.session_state.index_actuel]
         st.session_state.index_actuel %= len(st.session_state.questions_reponses)
     else:
-        st.error("C'est la dernière carte. Vous pouvez quitter ou actualiser la page pour continuer à apprendre")
+        st.error("C'est la dernière carte. Vous pouvez actualiser la page pour reprendre la même catégorie, ou choisir une autre catégorie pour élargir vos connaissances.")
     bouton_cacher_reponse()
 
 # Move the current question to the end of the deck
@@ -214,7 +220,7 @@ def get_subdecks(deck, year, category=None):
 # Main function
 def main():
     load_css()
-    load_logo()
+    load_logo1()
     initialize_session()
 
     st.markdown("""
@@ -229,6 +235,7 @@ def main():
 
     # Sidebar for category, year, deck, and subdeck selection
     with st.sidebar:
+        load_logo()
         st.subheader('Sélectionner une catégorie, une année, un deck et un sous-deck')
         category = st.selectbox('Catégorie', get_categories())
         year = st.selectbox('Année', get_years(category))
@@ -256,7 +263,7 @@ def main():
             st.session_state.selected_subdeck = subdeck
             st.session_state.index_actuel = 0
             bouton_cacher_reponse()
-
+        load_logo()
     # Display questions and answers
     if st.session_state.selected_category and st.session_state.selected_year and st.session_state.selected_deck and st.session_state.selected_subdeck:
         afficher_question()
@@ -270,6 +277,16 @@ def main():
         with col3:
             st.button("Next", on_click=bouton_next)
         st.button("Down", on_click=bouton_down)
+
+# Add a blue footer with centered text
+footer = f"""
+<div style="position:fixed;bottom:0;width:100%;background-color:#007bff;color:white;padding:10px;text-align:center;">
+<span style="display: block; margin: auto;">Tous les droits réservés ClinicoG 2024</span>
+</div>
+"""
+st.markdown(footer, unsafe_allow_html=True)
+
+
 
 if __name__ == '__main__':
     main()
