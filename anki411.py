@@ -291,18 +291,31 @@ def bouton_cacher_reponse():
 
 # Move to the next question
 def bouton_next():
-    if len(st.session_state.questions_reponses) == 2:
-        # Move the current card to the end of the list
-        st.session_state.questions_reponses.append(
-            st.session_state.questions_reponses.pop(st.session_state.index_actuel)
+    num_questions = len(st.session_state.questions_reponses)
+
+    if st.session_state.index_actuel < num_questions - 1:
+        question = st.session_state.questions_reponses.pop(st.session_state.index_actuel)
+
+        # Check for the special case where there are exactly two questions
+        if len(st.session_state.questions_reponses) == 1:
+            insert_at = 1  # If only one question is left in the list, insert the current question at index 1
+        else:
+            insert_at = (st.session_state.index_actuel + 1) % len(st.session_state.questions_reponses)
+
+        st.session_state.questions_reponses.insert(insert_at, question)
+    else:
+        # If the user is on the last question, display a message in French
+        st.markdown(
+            """
+            <div style="border: 2px solid red; padding: 10px; border-radius: 5px; background-color: #ffe6e6;">
+                <p style="color: red; font-weight: bold;">Félicitations, C'est la dernière carte.Vous pouvez reprendre la même catégorie, ou choisir une autre catégorie pour élargir vos connaissances.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
         st.session_state.index_actuel = 0
-    else:
-        st.session_state.index_actuel = (st.session_state.index_actuel + 1) % len(
-            st.session_state.questions_reponses
-        )
-    bouton_cacher_reponse()
 
+    bouton_cacher_reponse()
 
 # Move to the previous question
 def bouton_previous():
@@ -317,14 +330,18 @@ def bouton_previous():
     bouton_cacher_reponse()
 
 
-# Remove the current question
 def bouton_down():
     if len(st.session_state.questions_reponses) > 1:
         del st.session_state.questions_reponses[st.session_state.index_actuel]
         st.session_state.index_actuel %= len(st.session_state.questions_reponses)
     else:
-        st.error(
-            "C'est la dernière carte. Vous pouvez actualiser la page pour reprendre la même catégorie, ou choisir une autre catégorie pour élargir vos connaissances."
+        st.markdown(
+            """
+            <div style="border: 2px solid red; padding: 10px; border-radius: 5px; background-color: #ffe6e6;">
+                <p style="color: red; font-weight: bold;">Félicitations, C'est la dernière carte.Vous pouvez reprendre la même catégorie, ou choisir une autre catégorie pour élargir vos connaissances.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
     bouton_cacher_reponse()
 
